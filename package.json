@@ -1,0 +1,28 @@
+{
+  "name": "wetube",
+  "version": "1.0.0",
+  "description": "The best way to watch videos",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon --exec babel-node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeConsulat2/wetube-reloaded.git"
+  },
+  "author": "Jonathan Park<wooine2@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LeConsulat2/wetube-reloaded/issues"
+  },
+  "homepage": "https://github.com/LeConsulat2/wetube-reloaded#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.5",
+    "@babel/node": "^7.23.9",
+    "@babel/preset-env": "^7.24.5",
+    "nodemon": "^3.1.0"
+  }
+}
