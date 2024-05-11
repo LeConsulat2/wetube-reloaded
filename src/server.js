@@ -1,29 +1,24 @@
 import express from "express";
 
 const PORT = 4000;
-
 const app = express();
+
+const logger = (req, res, next) => {
+    console.log(`${req.method} ${req.url}`);
+    next();
+};
 
 
 const handleHome = (req, res) => {
-    return res.send("<h1>I still love you</h1>");
+    return res.send("I love middlewares");
+};
 
-}
 
-const handleLogin = (req, res) => {
-    return res.send("Login Here");
-}
+app.get("/", logger, handleHome);   // Uses handleHome specifically for the root ("/") route
 
-app.get("/", handleHome);  
-app.get("/login", handleLogin)
 
-// ^^^^^^ same as 1 liner above
-// app.get("/", () => console.log("Somebody is trying to go home.")); 
+
 const handleListening = () => 
-    console.log(`server Listening on port http://localhost:${PORT}`);
+    console.log(`Server listening on port http://localhost:${PORT}`);
 
-app.listen(4000, handleListening);
-
-// app.listen(4000, () => console.log("server Listening on port 4000"));
-// You can do it like above for a shorter way
-
+app.listen(PORT, handleListening);  // Starts the server on port 4000
