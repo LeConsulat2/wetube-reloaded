@@ -4,11 +4,21 @@ const PORT = 4000;
 
 const app = express();
 
-app.get("/", () => console.log("Somebody is trying to go home."));
 
-// const handleHome = () => console.log("somebody is trying to go home.");
-// app.get("/", handleHome);   <<<<<< same as 1 liner above
+const handleHome = (req, res) => {
+    return res.send("<h1>I still love you</h1>");
 
+}
+
+const handleLogin = (req, res) => {
+    return res.send("Login Here");
+}
+
+app.get("/", handleHome);  
+app.get("/login", handleLogin)
+
+// ^^^^^^ same as 1 liner above
+// app.get("/", () => console.log("Somebody is trying to go home.")); 
 const handleListening = () => 
     console.log(`server Listening on port http://localhost:${PORT}`);
 
