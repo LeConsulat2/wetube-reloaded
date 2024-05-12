@@ -1,21 +1,23 @@
 import express from "express";
+import morgan from "morgan";
+import globalRouter from "./routers/globalRouter";
+import videoRouter from "./routers/videoRouter";
+import userRouter from "./routers/videoRouter";
 
 const PORT = 4000;
 const app = express();
+const logger = morgan("dev");
 
-const logger = (req, res, next) => {
-    console.log(`${req.method} ${req.url}`);
-    next();
-};
+app.use(logger);
 
+// Routers
+// Handler functions
+// Global routes
 
-const handleHome = (req, res) => {
-    return res.send("I love middlewares");
-};
-
-
-app.get("/", logger, handleHome);   // Uses handleHome specifically for the root ("/") route
-
+// Apply routers
+app.use("/", globalRouter);
+app.use("/videos", videoRouter);
+app.use("/users", userRouter);
 
 
 const handleListening = () => 
