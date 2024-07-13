@@ -1,3 +1,10 @@
-export const join = (req, res) => res.send("Join");
-export const edit = (req, res) => res.send("Edit User");
-export const remove = (req, res) => res.send("Remove User");
+// src/routers/userRouter.js
+import express from 'express';
+import { edit, remove } from '../controllers/userControllers';
+
+const userRouter = express.Router();
+
+userRouter.get('/edit', edit);
+userRouter.get('/delete', remove);
+
+export default userRouter;

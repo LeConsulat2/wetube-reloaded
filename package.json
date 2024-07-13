@@ -18,7 +18,6 @@
   "homepage": "https://github.com/LeConsulat2/wetube-reloaded#readme",
   "dependencies": {
     "express": "^4.19.2",
-    "mongoose": "^8.5.0",
     "morgan": "^1.10.0",
     "pug": "^3.0.3"
   },
