@@ -5,7 +5,6 @@ import { watch, getEdit, postEdit } from '../controllers/videoControllers';
 const videoRouter = express.Router();
 
 videoRouter.get('/:id(\\d+)', watch); // 'id' must be numeric
-videoRouter.get('/:id(\\d+)/edit', getEdit); // 'id' must be numeric
-videoRouter.post('/:id(\\d+)/edit', postEdit);
+videoRouter.route('/:id(\\d+)/edit').get(getEdit).post(postEdit);
 
 export default videoRouter;
