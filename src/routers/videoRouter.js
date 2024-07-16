@@ -1,4 +1,3 @@
-// src/routers/videoRouter.js
 import express from 'express';
 import {
   watch,
@@ -7,6 +6,8 @@ import {
   getUpload,
   postUpload,
 } from '../controllers/videoControllers';
+
+console.log({ watch, getEdit, postEdit, getUpload, postUpload }); // Debugging line
 
 const videoRouter = express.Router();
 
