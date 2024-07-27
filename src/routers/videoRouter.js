@@ -6,13 +6,12 @@ import {
   getUpload,
   postUpload,
 } from '../controllers/videoControllers';
-
-console.log({ watch, getEdit, postEdit, getUpload, postUpload }); // Debugging line
+console.log({ watch, getEdit, postEdit, getUpload, postUpload }); // Add this line to check the import
 
 const videoRouter = express.Router();
 
-videoRouter.get('/:id(\\d+)', watch); // 'id' must be numeric
-videoRouter.route('/:id(\\d+)/edit').get(getEdit).post(postEdit);
+videoRouter.get('/:id([0-9a-f]{24})', watch);
+videoRouter.route('/:id([0-9a-f]{24})/edit').get(getEdit).post(postEdit);
 videoRouter.route('/upload').get(getUpload).post(postUpload);
 
 export default videoRouter;
