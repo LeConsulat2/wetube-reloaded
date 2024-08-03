@@ -1,7 +1,7 @@
 import Video, { formatHashtags } from '../models/Video';
 
 export const home = async (req, res) => {
-  const videos = await Video.find({});
+  const videos = await Video.find({}).sort({ createdAt: 'descending' });
   return res.render('home', { pageTitle: 'Home', videos });
 };
 
@@ -59,4 +59,10 @@ export const postUpload = async (req, res) => {
       errorMessage: error.message,
     });
   }
+};
+
+export const deleteVideo = async (req, res) => {
+  const { id } = req.params;
+  await Video.findByIdAndDelete(id);
+  return res.redirect('/');
 };
