@@ -1,14 +1,14 @@
 // src/routers/globalRouter.js
 import express from 'express';
-import { join, login } from '../controllers/userControllers';
+import { getJoin, login, postJoin } from '../controllers/userControllers';
 import { home, search } from '../controllers/videoControllers';
 
 const globalRouter = express.Router();
 
-console.log({ join, home }); // Debugging line
+console.log({ getJoin, home }); // Debugging line
 
 globalRouter.get('/', home);
-globalRouter.get('/join', join);
+globalRouter.get('/join').get(getJoin).post(postJoin);
 globalRouter.get('/login', login);
 globalRouter.get('/search', search);
 
