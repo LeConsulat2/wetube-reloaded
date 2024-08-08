@@ -1,5 +1,6 @@
 // src/controllers/userControllers.js
 import User from '../models/User';
+import bcrpyt from "bcrypt";
 
 export const getJoin = (req, res) => {
   res.render('join', { pageTitle: 'Join' });
@@ -57,21 +58,30 @@ export const postJoin = async (req, res) => {
   }
 };
 
-export const getlogin = (req, res) => {
+export const getLogin = (req, res) => {
   res.send('login', { pageTitle: 'Login' });
 };
 
-export const postLogin async = (req, res) => {
-  const { username, password } = req.body;
-  const exists = await User.exists({ username });
-  if (!exists) {
+export const postLogin = async (req, res) => {
+  const {username, password} = req.body;
+  const pageTitle = "Login";
+  const user = await User.findOne({username});
+  if (!user) {
     return res.status(400).render("login", {
-      pageTitle: "Login",
-      errorMessage: "An account with this username does not exists",
+      pageTitle,
+      errorMessage: "An account with this username does not exist"
     });
   }
-  res.end();
+  const ok = await bcrrypt.compare(password, user.password);
+  if (!ok) {
+    return res.status(400).render("login", {
+      pageTitle,
+      errorMessage: "Wrong password",
+    });
+  }
+  return res.redirect("/");
 }
+
 
 export const edit = (req, res) => {
   res.send('Edit User');

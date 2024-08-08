@@ -10,7 +10,7 @@ import { home, search } from '../controllers/videoControllers';
 
 const globalRouter = express.Router();
 
-console.log({ getJoin, home }); // Debugging line
+
 
 globalRouter.get('/', home);
 globalRouter.route('/join').get(getJoin).post(postJoin);
