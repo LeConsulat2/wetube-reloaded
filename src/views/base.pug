@@ -1,6 +1,8 @@
 doctype html
 html(lang="en")
     head
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
         title #{pageTitle} | WeTube
         link(rel="stylesheet" href="https://unpkg.com/mvp.css")
     body
@@ -10,13 +12,21 @@ html(lang="en")
                 ul 
                     li 
                         a(href="/") Home
+                    if loggedIn
+                        li 
+                            a(href="/logout") Log Out
+                        li 
+                            a(href="/my-profile") #{loggedInUser?.name || 'Profile'}'s Profile
+                    else 
+                        li 
+                            a(href="/join") Join  
+                        li 
+                            a(href="/login") Login          
+
                     li
                         a(href="/videos/upload") Upload Video
                     li
                         a(href="/search") Search
-                    li 
-                        a(href="/join") Join    
-
         main 
             block content
     include partials/footer

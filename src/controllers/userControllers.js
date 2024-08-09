@@ -1,6 +1,6 @@
 // src/controllers/userControllers.js
 import User from '../models/User';
-import bcrpyt from "bcrypt";
+import bcrypt from 'bcrypt';
 
 export const getJoin = (req, res) => {
   res.render('join', { pageTitle: 'Join' });
@@ -40,7 +40,7 @@ export const postJoin = async (req, res) => {
   //     errorMessage: 'This username/email is already taken',
   //   });
   // }
-  
+
   try {
     await User.create({
       name,
@@ -59,29 +59,30 @@ export const postJoin = async (req, res) => {
 };
 
 export const getLogin = (req, res) => {
-  res.send('login', { pageTitle: 'Login' });
+  res.render('login', { pageTitle: 'Login' });
 };
 
 export const postLogin = async (req, res) => {
-  const {username, password} = req.body;
-  const pageTitle = "Login";
-  const user = await User.findOne({username});
+  const { username, password } = req.body;
+  const pageTitle = 'Login';
+  const user = await User.findOne({ username });
   if (!user) {
-    return res.status(400).render("login", {
+    return res.status(400).render('login', {
       pageTitle,
-      errorMessage: "An account with this username does not exist"
+      errorMessage: 'An account with this username does not exist',
     });
   }
-  const ok = await bcrrypt.compare(password, user.password);
+  const ok = await bcrypt.compare(password, user.password);
   if (!ok) {
-    return res.status(400).render("login", {
+    return res.status(400).render('login', {
       pageTitle,
-      errorMessage: "Wrong password",
+      errorMessage: 'Wrong password',
     });
   }
-  return res.redirect("/");
-}
-
+  req.session.loggedIn = true;
+  req.session.user = user;
+  return res.redirect('/');
+};
 
 export const edit = (req, res) => {
   res.send('Edit User');
