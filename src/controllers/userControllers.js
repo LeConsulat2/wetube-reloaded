@@ -112,6 +112,8 @@ export const finishGithubLogin = async (req, res) => {
     },
   });
   const json = await data.json();
+  console.log(json);
+  res.send(JSON.stringify(json));
 };
 
 export const edit = (req, res) => {
